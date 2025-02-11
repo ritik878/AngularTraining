@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="row d-flex justify-content-center m-auto align-items-center">
+        <div class="col-md-3 form-outline">
+            <!-- <div class="form-outline" data-mdb-input-init> -->
+                <label for="colorFilter" class="form-label">Search</label>
+              <input type="search" id="form1" class="form-control" [(ngModel)]="searchTerm" (input)="searchProduct()" />
+              <!-- <label class="form-label" for="form1">Search</label> -->
+            <!-- </div> -->
+            <!-- <button type="button" class="btn btn-primary" data-mdb-ripple-init>
+              <i class="fas fa-search"></i>
+            </button> -->
+        </div>
+        <div class="col-md-3">
+            <label for="colorFilter" class="form-label">Filter by Color</label>
+            <select id="colorFilter" class="form-select" [(ngModel)]="selectedColor" (change)="filterProducts()">
+              <option value="">All Colors</option>
+              <option *ngFor="let color of colorOptions" [value]="color">{{ color }}</option>
+            </select>
+          </div>
+        
+          <div class="col-md-3">
+            <label for="categoryFilter" class="form-label">Filter by Category</label>
+            <select id="categoryFilter" class="form-select" [(ngModel)]="selectedCategory" (change)="filterProducts()">
+              <option value="">All Categories</option>
+              <option *ngFor="let category of categoryOptions" [value]="category">{{ category }}</option>
+            </select>
+          </div>
+    </div>
+  <div class="row">
+    <!-- <div class="d-flex flex-row"> -->
+    @if(products.length > 0) {
+      @for(product of paginatedProducts; track $index) {
+    <div class="col-md-4 mt-3">
+      <div class="card" style="width: 18rem">
+        <img class="card-img-top" [src]="product.imageUrl" alt="Card image cap" />
+        <div class="card-body">
+          <div class="card-text">
+            Price:   <strong>{{product.price}}</strong>
+            <p>{{product.description}}</p>
+            <p>Add <i class="fa-solid fa-cart-plus"(click)="addToCart(product)" style="cursor: pointer;"></i></p>
+
+          </div> 
+        </div>
+        
+      </div>
+    </div>
+    }
+}
+    @else{
+        <div>No Products found!!!</div>
+    }
+    <!-- </div> -->
+  </div>
+  <mat-paginator [length]="products.length" [pageSize]="pageSize" [pageSizeOptions]="[6, 12, 18]" showFirstLastButtons (page)="updatePaginator()">
+  </mat-paginator>
+</div>

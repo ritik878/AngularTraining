@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Users</h1>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                        <th>Details</th>
+                        <th>Day</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users" [ngClass]="user.id%2==0?'red':'blue'">
+                        <td>{{ user.id }}</td>
+                        @if (user.id%2==0)
+                        {
+                            <td>Mr .{{ user.name }}</td>
+                        }
+                        @else
+                        {
+                            <td>Mrs .{{ user.name }}</td>
+                        }
+                        
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.age }}</td>
+                        <button class="btn btn-primary" (click)="showUser(user.id)" routerLinkActive="active" >Details</button>
+                        @switch(user.id)
+                        {
+                            @case(1)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @case(2)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @case(3)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @case(4)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @case(5)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @case(6)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @case(7)
+                            {
+                                <td>{{weekList[user.id-1].dayName}}</td>
+                            }
+                            @default
+                            {
+                                <td>Invalid Day</td>
+                            }
+                        }
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<router-outlet></router-outlet>
