@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { CartServiceService } from '../cart/cart-service.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-products-list',
@@ -17,7 +18,11 @@ export class ProductsListComponent {
   products:Product[]=[]
   paginatedProducts: Product[] = [];
   pageSize=6;
-  constructor(private productService:ProductsService,private cartService:CartServiceService) {
+  role:string
+  constructor(private productService:ProductsService,private cartService:CartServiceService,private router:Router) {
+    this.role = localStorage.getItem('role') || ''
+      
+    
     this.products = this.productService.getProducts();
   }
   ngAfterViewInit() {

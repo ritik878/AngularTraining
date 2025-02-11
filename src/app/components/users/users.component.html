@@ -1,4 +1,5 @@
 <div class="container">
+    @if(role=='admin'){
     <div class="row">
         <div class="col-md-12">
             <h1>Users</h1>
@@ -68,5 +69,13 @@
             </table>
         </div>
     </div>
+}
+@else{
+<div class="row">
+    <div class="col-md-12">
+        <div>Unauthorized </div>
+    </div>
+</div>
+}
 </div>
 <router-outlet></router-outlet>

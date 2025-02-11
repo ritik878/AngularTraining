@@ -14,8 +14,10 @@ import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/rou
 export class UsersComponent {
   users:User[]=[]
   weekList=[{dayName:'Monday',dayNumber:'1'},{dayName:'Tuesday',dayNumber:'2'},{dayName:'Wednesday',dayNumber:'3'},{dayName:'Thursday',dayNumber:'4'},{dayName:'Friday',dayNumber:'5'},{dayName:'Saturday',dayNumber:'6'},{dayName:'Sunday',dayNumber:'7'}];
+  role:string
   constructor(private userService:UserService,private router:Router) {
   // this.users=this.userService.getUsers();
+  this.role = localStorage.getItem('role') || '';
   }
   ngOnInit(): void {
     this.userService.getUsers().subscribe(
